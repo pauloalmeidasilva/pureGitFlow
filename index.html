@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Flow Visual - Guia de Comandos</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --main-color: #ef4444;    /* Vermelho */
+            --develop-color: #eab308; /* Amarelo */
+            --feature-color: #3b82f6; /* Azul */
+            --release-color: #22c55e; /* Verde */
+            --hotfix-color: #a855f7;  /* Roxo */
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 { text-align: center; color: var(--text); }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .lane {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            border-top: 5px solid var(--text);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lane.main { border-color: var(--main-color); }
+        .lane.develop { border-color: var(--develop-color); }
+        .lane.feature { border-color: var(--feature-color); }
+        .lane.release { border-color: var(--release-color); }
+        .lane.hotfix { border-color: var(--hotfix-color); }
+
+        .lane-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #94a3b8;
+        }
+
+        code {
+            display: block;
+            background-color: var(--code-bg);
+            padding: 10px;
+            border-radius: 4px;
+            color: #4ade80;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 5px 0;
+            color: #475569;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            margin-bottom: 5px;
+            background: #475569;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Guia Visual Git Flow (Comandos Puros)</h1>
+
+    <div class="container">
+        
+        <div class="lane main">
+            <div class="lane-title" style="color: var(--main-color)">Main / Master</div>
+            <div class="badge">Produção</div>
+            
+            <div class="step">
+                <span class="step-title">1. Inicialização do Projeto</span>
+                <code>git init
+git branch -M main
+git commit -m "Initial commit"</code>
+            </div>
+
+            <div class="step">
+                <span class="step-title">2. Recebe Release ou Hotfix</span>
+                <code>git merge --no-ff release/v1.0
+git tag -a v1.0</code>
+            </div>
+        </div>
+
+        <div class="lane hotfix">
+            <div class="lane-title" style="color: var(--hotfix-color)">Hotfix</div>
+            <div class="badge">Correção Crítica</div>
+            
+            <div class="step">
+                <span class="step-title">Início (via Main)</span>
+                <code>git checkout main
+git checkout -b hotfix/bug-fix</code>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step">
+                <span class="step-title">Fim (Main + Develop)</span>
+                <code># Na Main
+git merge hotfix/bug-fix
+# Na Develop
+git merge hotfix/bug-fix</code>
+            </div>
+        </div>
+
+        <div class="lane release">
+            <div class="lane-title" style="color: var(--release-color)">Release</div>
+            <div class="badge">Preparação</div>
+
+            <div class="step">
+                <span class="step-title">Início (via Develop)</span>
+                <code>git checkout develop
+git checkout -b release/v1.0</code>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step">
+                <span class="step-title">Fim (Main + Develop)</span>
+                <code># Finaliza na Main
+# e sincroniza Develop</code>
+            </div>
+        </div>
+
+        <div class="lane develop">
+            <div class="lane-title" style="color: var(--develop-color)">Develop</div>
+            <div class="badge">Integração</div>
+
+            <div class="step">
+                <span class="step-title">Setup inicial</span>
+                <code>git checkout -b develop
+git push -u origin develop</code>
+            </div>
+
+            <div class="step">
+                <span class="step-title">Recebe Features</span>
+                <code>git merge --no-ff feature/xyz</code>
+            </div>
+        </div>
+
+        <div class="lane feature">
+            <div class="lane-title" style="color: var(--feature-color)">Feature</div>
+            <div class="badge">Novas Funcionalidades</div>
+
+            <div class="step">
+                <span class="step-title">Início (via Develop)</span>
+                <code>git checkout develop
+git checkout -b feature/nome</code>
+            </div>
+
+            <div class="arrow">↓</div>
+
+            <div class="step">
+                <span class="step-title">Fim</span>
+                <code>git checkout develop
+git merge --no-ff feature/nome
+git branch -d feature/nome</code>
+            </div>
+        </div>
+
+    </div>
+
+    <p style="text-align: center; color: #64748b; margin-top: 40px;">
+        Dica: Use sempre <code>--no-ff</code> para manter o histórico visual de merges.
+    </p>
+
+</body>
+</html>
