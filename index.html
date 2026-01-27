@@ -18,6 +18,7 @@
         <nav>
             <ul>
                 <li><a class="menu-item" href="#home">Apresentação</a></li>
+                <li><a class="menu-item" href="#fluxo">Fluxo Completo</a></li>
                 <li><a class="menu-item" href="#instalation">Instalando o Git</a></li>
                 <li><a class="menu-item" href="#init">Iniciando Repositório</a></li>
                 <li><a class="menu-item" href="#configure">Configurando .gitignore</a></li>
@@ -56,6 +57,63 @@
                         falham.</li>
                 </div>
             </section>
+
+            <!-- Seção Fluxo GitFlow -->
+<section id="fluxo" class="flowchart">
+    <div class="step" style="max-width: 800px; text-align: center;">
+        <h3>🗺️ Fluxo GitFlow Completo</h3>
+        <p style="margin: 1rem 0; opacity: 0.9;">Branch principal (main) só recebe código pronto. Tudo nasce do develop!</p>
+    </div>
+
+    <div class="step">
+        <h3>1. BRANCH PRINCIPAL (main) → develop</h3>
+        <p style="opacity: 0.9;">
+            <strong>Main:</strong> Produção estável (só releases/hotfix)<br>
+            <strong>Develop:</strong> Integração contínua (todas features)
+        </p>
+        <code class="command">git checkout main<br>git checkout -b develop</code>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="step">
+        <h3>2. FEATURES (verde)</h3>
+        <p style="opacity: 0.9;">
+            Novas funcionalidades nascem do <strong>develop</strong>
+        </p>
+        <code class="command">git checkout develop<br>git checkout -b feature/login<br># Desenvolver...<br>git checkout develop && git merge feature/login</code>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="step">
+        <h3>3. RELEASE (laranja)</h3>
+        <p style="opacity: 0.9;">
+            Preparar versão estável do <strong>develop</strong>
+        </p>
+        <code class="command">git checkout develop<br>git checkout -b release/v1.2.0<br># Ajustar versão, docs...<br>git checkout main && git merge release/v1.2.0<br>git checkout develop && git merge release/v1.2.0</code>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="step" style="background: rgba(239,68,68,0.3);">
+        <h3>4. HOTFIX (vermelho) - EMERGÊNCIA</h3>
+        <p style="opacity: 0.9;">
+            <strong>Bug em produção?</strong> Nasce direto do <strong>main</strong>
+        </p>
+        <code class="command">git checkout main<br>git checkout -b hotfix/v1.2.1<br># Corrigir urgente...<br>git checkout main && git merge hotfix/v1.2.1<br>git checkout develop && git merge hotfix/v1.2.1</code>
+    </div>
+
+    <div class="arrow">↺</div>
+
+    <div class="step" style="background: rgba(16,185,129,0.3);">
+        <h3>✅ REGRA DE OURO</h3>
+        <p style="opacity: 0.9;">
+            <strong>nunca commite direto no main!</strong><br>
+            Main = produção | Develop = próximo release
+        </p>
+    </div>
+</section>
 
             <!-- Seção Instalation (placeholder) -->
             <section id="instalation" class="flowchart">
