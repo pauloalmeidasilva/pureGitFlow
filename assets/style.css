@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Sono:wght,MONO@200..800,1&display=swap');
+
+:root {
+    --bg: #0f2e77;
+    --card-bg: #6073a0;
+    --text: #ececec;
+    --main-color: #ef4444;
+    --alternative-color: #eab308;
+    --alert-color: #3b82f6;
+    --danger-color: #22c55e;
+    --code-bg: #000000;
+}
+
+body {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 70%;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+h1 {
+    line-height: 2em;
+    color: var(--main-color);
+}
+
+p {
+    margin: 0;
+}
+
+.tittle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 70%;
+    min-height: 100vh;
+}
+
+.container-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.lane {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    border-top: 5px solid var(--text);
+    display: flex;
+    flex-direction: column;
+}
+
+.lane.main {
+    border-color: var(--main-color);
+}
+
+.lane.develop {
+    border-color: var(--develop-color);
+}
+
+.lane.feature {
+    border-color: var(--feature-color);
+}
+
+.lane.release {
+    border-color: var(--release-color);
+}
+
+.lane.hotfix {
+    border-color: var(--hotfix-color);
+}
+
+.lane-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.step {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.step-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #94a3b8;
+}
+
+code {
+    display: block;
+    background-color: var(--code-bg);
+    padding: 10px;
+    border-radius: 4px;
+    color: #4ade80;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.arrow {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 5px 0;
+    color: #475569;
+}
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    background: #475569;
+}
