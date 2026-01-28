@@ -1,273 +1,827 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pure GitFlow</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="assets/style.css" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure GitFlow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/style.css">
-</head>
+	<body>
+		<header>
+			<h1>Pure GitFlow</h1>
+			<p class="subtitle">
+				Versionamento profissional com Git puro para iniciantes
+			</p>
+		</header>
+		<div class="container">
+			<nav>
+				<ul>
+					<li><a class="menu-item" href="#home">Apresentação</a></li>
+					<li>
+						<a class="menu-item" href="#fluxo">Fluxo Completo</a>
+					</li>
+					<li>
+						<a class="menu-item" href="#instalation"
+							>Instalando o Git</a
+						>
+					</li>
+					<li>
+						<a class="menu-item" href="#init"
+							>Iniciando Repositório</a
+						>
+					</li>
+					<li>
+						<a class="menu-item" href="#configure"
+							>Configurando .gitignore</a
+						>
+					</li>
+					<li>
+						<a class="menu-item" href="#commit">Commit Básico</a>
+					</li>
+					<li><a class="menu-item" href="#features">Features</a></li>
+					<li><a class="menu-item" href="#release">Releases</a></li>
+					<li><a class="menu-item" href="#hotfix">Hotfix</a></li>
+				</ul>
+			</nav>
+			<main>
+				<!-- Seção Home -->
+				<section id="home" class="flowchart show">
+					<div class="step">
+						<h3>Bem-vindo ao Pure GitFlow!</h3>
+						<p>
+							Bem-vindo ao Pure GitFlow! Este projeto foi criado
+							especificamente para desenvolvedores iniciantes que
+							desejam entender, na prática, como funciona o fluxo
+							de versionamento profissional de grandes empresas,
+							sem depender de ferramentas automatizadas complexas.
+						</p>
 
-<body>
-    <header>
-        <h1>Pure GitFlow</h1>
-        <p class="subtitle">Versionamento profissional com Git puro para iniciantes</p>
-    </header>
-    <div class="container">
-        <nav>
-            <ul>
-                <li><a class="menu-item" href="#home">Apresentação</a></li>
-                <li><a class="menu-item" href="#fluxo">Fluxo Completo</a></li>
-                <li><a class="menu-item" href="#instalation">Instalando o Git</a></li>
-                <li><a class="menu-item" href="#init">Iniciando Repositório</a></li>
-                <li><a class="menu-item" href="#configure">Configurando .gitignore</a></li>
-                <li><a class="menu-item" href="#commit">Commit Básico</a></li>
-                <li><a class="menu-item" href="#features">Features</a></li>
-                <li><a class="menu-item" href="#release">Releases</a></li>
-                <li><a class="menu-item" href="#hotfix">Hotfix</a></li>
-            </ul>
-        </nav>
-        <main>
-            <!-- Seção Home -->
-            <section id="home" class="flowchart show">
-                <div class="step">
-                    <h3>Bem-vindo ao Pure GitFlow!</h3>
-                    <p>Bem-vindo ao Pure GitFlow! Este projeto foi criado especificamente para desenvolvedores
-                        iniciantes que desejam entender, na prática, como funciona o fluxo de versionamento profissional
-                        de grandes empresas, sem depender de ferramentas automatizadas complexas.</p>
+						<h3>Finalidade do projeto</h3>
+						<p>
+							A finalidade deste projeto é fornecer uma
+							experiência guiada e didática sobre o ciclo de vida
+							de um software. Ao utilizar este fluxo, você não
+							está apenas "subindo código", mas aprendendo os
+							caminhos básicos e essenciais que garantem a
+							segurança e a organização de um projeto real.
+						</p>
+						<p>
+							Este repositório serve como um laboratório onde você
+							aprenderá a:
+						</p>
+						<li>Isolar funcionalidades (Features).</li>
+						<li>Preparar lançamentos (Releases).</li>
+						<li>Corrigir erros críticos em produção (Hotfixes).</li>
+						<li>
+							Manter um histórico limpo e profissional utilizando
+							comandos puros do Git.
+						</li>
 
-                    <h3>Finalidade do projeto</h3>
-                    <p>A finalidade deste projeto é fornecer uma experiência guiada e didática sobre o ciclo de vida de
-                        um software. Ao utilizar este fluxo, você não está apenas "subindo código", mas aprendendo os
-                        caminhos básicos e essenciais que garantem a segurança e a organização de um projeto real.</p>
-                    <p>Este repositório serve como um laboratório onde você aprenderá a:</p>
-                    <li>Isolar funcionalidades (Features).</li>
-                    <li>Preparar lançamentos (Releases).</li>
-                    <li>Corrigir erros críticos em produção (Hotfixes).</li>
-                    <li>Manter um histórico limpo e profissional utilizando comandos puros do Git.</li>
+						<h3>Por que Git Puro?</h3>
+						<p>
+							Embora existam extensões que automatizam o Git Flow,
+							aprender os comandos manuais é fundamental para:
+						</p>
+						<li>
+							Entender o porquê: Saber o que acontece em cada
+							merge e troca de branch.
+						</li>
+						<li>
+							Versatilidade: Conseguir trabalhar em qualquer
+							terminal, de qualquer servidor, sem precisar
+							instalar plugins extras.
+						</li>
+						<li>
+							Resolução de Problemas: Ter confiança para resolver
+							conflitos quando as ferramentas automáticas falham.
+						</li>
+					</div>
+				</section>
 
-                    <h3>Por que Git Puro?</h3>
-                    <p>Embora existam extensões que automatizam o Git Flow, aprender os comandos manuais é fundamental
-                        para:</p>
-                    <li>Entender o porquê: Saber o que acontece em cada merge e troca de branch.</li>
-                    <li>Versatilidade: Conseguir trabalhar em qualquer terminal, de qualquer servidor, sem precisar
-                        instalar plugins extras.</li>
-                    <li>Resolução de Problemas: Ter confiança para resolver conflitos quando as ferramentas automáticas
-                        falham.</li>
-                </div>
-            </section>
+				<!-- Seção Fluxo GitFlow -->
+				<section id="fluxo" class="flowchart">
+					<div
+						class="step"
+						style="max-width: 800px; text-align: center"
+					>
+						<h3>🗺️ Fluxo GitFlow Completo</h3>
+					</div>
 
-            <!-- Seção Fluxo GitFlow -->
-<section id="fluxo" class="flowchart">
-    <div class="step" style="max-width: 800px; text-align: center;">
-        <h3>🗺️ Fluxo GitFlow Completo</h3>
-        <p style="margin: 1rem 0; opacity: 0.9;">Branch principal (main) só recebe código pronto. Tudo nasce do develop!</p>
-    </div>
+					<div class="step">
+						<h3>1. BRANCH PRINCIPAL (main) → develop</h3>
+						<p style="opacity: 0.9; line-height: 1.8">
+							<strong>Main:</strong> Produção estável. Recebe
+							apenas merges de <strong>release</strong> e
+							<strong>hotfix</strong>.<br />
+							<strong>Develop:</strong> Branch de integração
+							contínua. Base para todas as features e próximo
+							release.<br />
+							<em style="opacity: 0.7"
+								>→ Vá para a seção "Iniciando Repositório" para
+								criar estas branches</em
+							>
+						</p>
+					</div>
 
-    <div class="step">
-        <h3>1. BRANCH PRINCIPAL (main) → develop</h3>
-        <p style="opacity: 0.9;">
-            <strong>Main:</strong> Produção estável (só releases/hotfix)<br>
-            <strong>Develop:</strong> Integração contínua (todas features)
-        </p>
-        <code class="command">git checkout main<br>git checkout -b develop</code>
-    </div>
+					<div class="arrow">↓</div>
 
-    <div class="arrow">↓</div>
+					<div class="step">
+						<h3>2. FEATURES (verde) 🟢</h3>
+						<p style="opacity: 0.9; line-height: 1.8">
+							Novas funcionalidades nascem do
+							<strong>develop</strong> e são isoladas em branches
+							<code>feature/nome</code>.<br />
+							Cada developer trabalha em sua feature sem afetar
+							outras. Após pronta, faz merge de volta ao
+							develop.<br />
+							<em style="opacity: 0.7"
+								>→ Vá para a seção "Features" para ver os
+								comandos</em
+							>
+						</p>
+					</div>
 
-    <div class="step">
-        <h3>2. FEATURES (verde)</h3>
-        <p style="opacity: 0.9;">
-            Novas funcionalidades nascem do <strong>develop</strong>
-        </p>
-        <code class="command">git checkout develop<br>git checkout -b feature/login<br># Desenvolver...<br>git checkout develop && git merge feature/login</code>
-    </div>
+					<div class="arrow">↓</div>
 
-    <div class="arrow">↓</div>
+					<div class="step">
+						<h3>3. RELEASE (laranja) 🟠</h3>
+						<p style="opacity: 0.9; line-height: 1.8">
+							Quando develop está pronto para produção, cria-se
+							uma branch <code>release/vX.X.X</code>.<br />
+							Nesta fase: ajusta versão, documentação, e corrige
+							bugs menores. Depois faz merge em
+							<strong>main</strong> (com tag) e volta para
+							develop.<br />
+							<em style="opacity: 0.7"
+								>→ Vá para a seção "Releases" para ver os
+								comandos</em
+							>
+						</p>
+					</div>
 
-    <div class="step">
-        <h3>3. RELEASE (laranja)</h3>
-        <p style="opacity: 0.9;">
-            Preparar versão estável do <strong>develop</strong>
-        </p>
-        <code class="command">git checkout develop<br>git checkout -b release/v1.2.0<br># Ajustar versão, docs...<br>git checkout main && git merge release/v1.2.0<br>git checkout develop && git merge release/v1.2.0</code>
-    </div>
+					<div class="arrow">↓</div>
 
-    <div class="arrow">↓</div>
+					<div
+						class="step"
+						style="background: rgba(239, 68, 68, 0.3)"
+					>
+						<h3>4. HOTFIX (vermelho) 🔴 - EMERGÊNCIA</h3>
+						<p style="opacity: 0.9; line-height: 1.8">
+							Bug crítico em produção? Cria branch
+							<code>hotfix/vX.X.X</code>
+							<strong>direto do main</strong>.<br />
+							Corrige o problema com urgência, faz merge em main
+							(com tag) E de volta em develop para sincronizar.<br />
+							<em style="opacity: 0.7"
+								>→ Vá para a seção "Hotfix" para ver os
+								comandos</em
+							>
+						</p>
+					</div>
 
-    <div class="step" style="background: rgba(239,68,68,0.3);">
-        <h3>4. HOTFIX (vermelho) - EMERGÊNCIA</h3>
-        <p style="opacity: 0.9;">
-            <strong>Bug em produção?</strong> Nasce direto do <strong>main</strong>
-        </p>
-        <code class="command">git checkout main<br>git checkout -b hotfix/v1.2.1<br># Corrigir urgente...<br>git checkout main && git merge hotfix/v1.2.1<br>git checkout develop && git merge hotfix/v1.2.1</code>
-    </div>
+					<div class="arrow">↺</div>
 
-    <div class="arrow">↺</div>
+					<div
+						class="step"
+						style="background: rgba(16, 185, 129, 0.3)"
+					>
+						<h3>✅ REGRA DE OURO</h3>
+						<p style="opacity: 0.9; line-height: 1.8">
+							<strong>🚫 Nunca commite direto no main!</strong
+							><br />
+							<strong>Main</strong> = Produção estável |
+							<strong>Develop</strong> = Próximo release<br />
+							Sempre crie branches de suporte (feature, release,
+							hotfix) para organizar o workflow.
+						</p>
+					</div>
+				</section>
 
-    <div class="step" style="background: rgba(16,185,129,0.3);">
-        <h3>✅ REGRA DE OURO</h3>
-        <p style="opacity: 0.9;">
-            <strong>nunca commite direto no main!</strong><br>
-            Main = produção | Develop = próximo release
-        </p>
-    </div>
-</section>
+				<!-- Seção Instalation (placeholder) -->
+				<section id="instalation" class="flowchart">
+					<div class="step" style="max-width: 700px">
+						<h3>Instalar Git (Todos os Sistemas)</h3>
+						<p style="margin: 1rem 0; line-height: 1.6">
+							Acesse o
+							<a
+								href="https://git-scm.com/downloads"
+								target="_blank"
+								style="color: #10b981; font-weight: 600"
+								>site oficial do Git</a
+							>
+							e clique no botão da sua plataforma
+							(Windows/Mac/Linux).
+						</p>
 
-            <!-- Seção Instalation (placeholder) -->
-            <section id="instalation" class="flowchart">
-                <div class="step" style="max-width: 700px;">
-                    <h3>Instalar Git (Todos os Sistemas)</h3>
-                    <p style="margin: 1rem 0; line-height: 1.6;">
-                        Acesse o <a href="https://git-scm.com/downloads" target="_blank"
-                            style="color: #10b981; font-weight: 600;">site oficial do Git</a> e clique no botão da sua
-                        plataforma (Windows/Mac/Linux).
-                    </p>
+						<div
+							style="
+								background: rgba(16, 185, 129, 0.2);
+								padding: 1.5rem;
+								border-radius: 8px;
+								margin: 1rem 0;
+							"
+						>
+							<h4 style="color: #10b981; margin-bottom: 0.5rem">
+								🇧🇷 Não sabe inglês?
+							</h4>
+							<p style="opacity: 0.9; margin-bottom: 0.5rem">
+								Clique com botão direito na página → "Traduzir
+								para Português"
+								<br />ou use o Google Tradutor no navegador.
+							</p>
+						</div>
 
-                    <div style="background: rgba(16,185,129,0.2); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
-                        <h4 style="color: #10b981; margin-bottom: 0.5rem;">🇧🇷 Não sabe inglês?</h4>
-                        <p style="opacity: 0.9; margin-bottom: 0.5rem;">
-                            Clique com botão direito na página → "Traduzir para Português"
-                            <br>ou use o Google Tradutor no navegador.
-                        </p>
-                    </div>
+						<p style="margin: 1rem 0; opacity: 0.9">
+							O site oficial tem instaladores prontos com todos os
+							passos visuais. É mais fácil que receita de bolo!
+						</p>
+					</div>
 
-                    <p style="margin: 1rem 0; opacity: 0.9;">
-                        O site oficial tem instaladores prontos com todos os passos visuais. É mais fácil que receita de
-                        bolo!
-                    </p>
-                </div>
+					<div class="arrow">↓</div>
 
-                <div class="arrow">↓</div>
-
-                <div class="step" style="background: rgba(16,185,129,0.3);">
-                    <h3>Teste a Instalação e passos iniciais</h3>
-                    <pre class="command">
+					<div
+						class="step"
+						style="background: rgba(16, 185, 129, 0.3)"
+					>
+						<h3>Teste a Instalação e passos iniciais</h3>
+						<pre class="command">
 # verifica a versão do git, se aparecer a versão tudo está correto
 git --version
 
 # configure seu nome e email (substitua pelos seus dados)
 git config --global user.name "Seu Nome"
 git config --global user.email "seu@email.com"
-                    </pre>
-                </div>
-            </section>
+                    </pre
+						>
+					</div>
+				</section>
 
-            <!-- Seção Init -->
-            <!-- Seção Init Repositório -->
-            <section id="init" class="flowchart">
-                <div class="step">
-                    <h3>📁 Repositório NOVO</h3>
-                    <pre class="command">git init<br>git branch -M main</pre>
-                    <p>
-                        Cria pasta vazia com branch "main"
-                    </p>
-                </div>
+				<!-- Seção Init Repositório -->
+				<section id="init" class="flowchart">
+					<div class="step">
+						<h3>📁 Repositório NOVO</h3>
+						<pre
+							class="command"
+						>git init<br>git branch -M main</pre>
+						<p>Cria pasta vazia com branch "main"</p>
+					</div>
 
-                <div class="arrow">ou</div>
+					<div class="arrow">ou</div>
 
-                <div class="step">
-                    <h3>🔄 Repositório EXISTENTE</h3>
-                    <p>Já tem projeto com master? Converte para GitFlow:</p>
-                    <pre class="command">git branch -M main<br>git checkout -b develop</pre>
-                </div>
+					<div class="step">
+						<h3>🔄 Repositório EXISTENTE</h3>
+						<p>Já tem projeto com master? Converte para GitFlow:</p>
+						<pre
+							class="command"
+						>git branch -M main<br>git checkout -b develop</pre>
+					</div>
 
-                <div class="arrow">↓</div>
+					<div class="arrow">↓</div>
 
-                <div class="step" style="background: rgba(16,185,129,0.3); max-width: 500px;">
-                    <h3>✅ Estrutura Final</h3>
-                    <pre class="command">git branch -a</pre>
-                    <p>Deve mostrar: main, develop ✓</p>
-                </div>
-            </section>
+					<div
+						class="step"
+						style="
+							background: rgba(16, 185, 129, 0.3);
+							max-width: 500px;
+						"
+					>
+						<h3>✅ Estrutura Final</h3>
+						<pre class="command">git branch -a</pre>
+						<p>Deve mostrar: main, develop ✓</p>
+					</div>
+				</section>
 
+				<!-- Seção .gitignore -->
+				<section id="configure" class="flowchart">
+					<div class="step" style="max-width: 700px">
+						<h3>🛡️ O que é .gitignore?</h3>
+						<p
+							style="
+								margin: 1rem 0;
+								line-height: 1.6;
+								opacity: 0.9;
+							"
+						>
+							Arquivo que fala pro Git "ignora esses arquivos".
+							Eles <b>NÃO</b> vão pro repositório. Esse processo
+							tem que ser feito antes de commitar o código, caso
+							você comite, terá que reverter para conseguir
+							remover.
+						</p>
 
-            <!-- Seção .gitignore -->
-            <section id="configure" class="flowchart">
-                <div class="step" style="max-width: 700px;">
-                    <h3>🛡️ O que é .gitignore?</h3>
-                    <p style="margin: 1rem 0; line-height: 1.6; opacity: 0.9;">
-                        Arquivo que fala pro Git "ignora esses arquivos". Eles <b>NÃO</b> vão pro repositório. Esse
-                        processo tem que ser feito antes de commitar o código, caso você comite, terá que reverter para
-                        conseguir remover.
-                    </p>
-
-                    <div style="background: rgba(16,185,129,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                        <h4 style="color: #10b981; margin-bottom: 0.5rem;">Exemplos essenciais:</h4>
-                        <pre class="command">
+						<div
+							style="
+								background: rgba(16, 185, 129, 0.2);
+								padding: 1rem;
+								border-radius: 8px;
+								margin: 1rem 0;
+							"
+						>
+							<h4 style="color: #10b981; margin-bottom: 0.5rem">
+								Exemplos essenciais:
+							</h4>
+							<pre class="command">
 node_modules/
 dist/
 build/
 *.log
 .env
 *.pyc
-                        </pre>
-                    </div>
-                </div>
+                        </pre
+							>
+						</div>
+					</div>
 
-                <div class="arrow">↓</div>
+					<div class="arrow">↓</div>
 
-                <div class="step" style="background: rgba(16,185,129,0.3);">
-                    <h3>Criar .gitignore</h3>
-                    <pre class="command">
+					<div
+						class="step"
+						style="background: rgba(16, 185, 129, 0.3)"
+					>
+						<h3>Criar .gitignore</h3>
+						<pre class="command">
 touch .gitignore
 echo "node_modules/" >> .gitignore
 git add .gitignore
-                    </pre>
-                </div>
-            </section>
+                    </pre
+						>
+					</div>
+				</section>
 
-            <!-- Seção Commit -->
-            <section id="commit" class="flowchart">
-                <div class="step">
-                    <h3>Commit Diário</h3>
-                    <code
-                        class="command">git add .<br>git commit -m "feat: adiciona login"<br>git push origin develop</code>
-                </div>
-            </section>
+				<!-- Seção Commit -->
+				<section id="commit" class="flowchart">
+					<div
+						class="step"
+						style="max-width: 800px; text-align: center"
+					>
+						<h3>💾 Commit Básico - Salvando seu Trabalho</h3>
+						<p style="margin: 1rem 0; opacity: 0.9">
+							Um commit é um "snapshot" do seu código em um
+							momento específico. É como salvar seu jogo com um
+							ponto de restauração!
+						</p>
+					</div>
 
-            <!-- Seção Features -->
-            <section id="features" class="flowchart">
-                <div class="step">
-                    <h3>Feature Start</h3>
-                    <code class="command">git checkout develop<br>git checkout -b feature/login</code>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="step">
-                    <h3>Feature Finish</h3>
-                    <code
-                        class="command">git checkout develop<br>git merge --no-ff feature/login<br>git push origin develop</code>
-                </div>
-            </section>
+					<div class="arrow">↓</div>
 
-            <!-- Seção Release -->
-            <section id="release" class="flowchart">
-                <div class="step">
-                    <h3>Release Start</h3>
-                    <code class="command">git checkout -b release/v1.0.0</code>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="step">
-                    <h3>Release Finish</h3>
-                    <code class="command">git checkout main<br>git merge --no-ff release/v1.0.0<br>git tag v1.0.0</code>
-                </div>
-            </section>
+					<div class="step" style="max-width: 700px">
+						<h3>🎯 Finalidade do Commit</h3>
+						<p style="line-height: 1.8; opacity: 0.9">
+							<strong>Registrar mudanças:</strong> Cada commit
+							documenta uma mudança específica no código.<br />
+							<strong>Histórico rastreável:</strong> Você consegue
+							ver quem mudou o quê e quando.<br />
+							<strong>Voltar no tempo:</strong> Se algo der
+							errado, você pode reverter para um commit
+							anterior.<br />
+							<strong>Colaboração:</strong> Múltiplos
+							desenvolvedores podem trabalhar e sincronizar
+							mudanças.<br />
+							<strong>Mensagens claras:</strong> Cada commit tem
+							uma mensagem explicando o que foi feito.
+						</p>
+					</div>
 
-            <!-- Seção Hotfix -->
-            <section id="hotfix" class="flowchart">
-                <div class="step">
-                    <h3>Hotfix</h3>
-                    <code
-                        class="command">git checkout main<br>git checkout -b hotfix/v1.0.1<br>git checkout main && git merge --no-ff hotfix/v1.0.1</code>
-                </div>
-            </section>
-        </main>
-    </div>
-    <footer>Repositório: <a href="https://github.com/pauloalmeidasilva/pureGitFlow" target="_blank">Pure GitFlow</a> |
-        Desenvolvedor: <a href="https://github.com/pauloalmeidasilva" target="_blank">Paulo Ricardo</a></footer>
+					<div class="arrow">↓</div>
 
-    <script src="assets/app.js"></script>
-</body>
+					<div class="step" style="max-width: 700px">
+						<h3>📝 Padrão de Mensagem de Commit</h3>
+						<p
+							style="
+								line-height: 1.6;
+								margin-bottom: 1rem;
+								opacity: 0.9;
+							"
+						>
+							Use este padrão (Conventional Commits) para manter
+							histórico limpo:
+						</p>
+						<pre class="command" style="margin: 1rem 0">
+feat: adiciona nova funcionalidade
+fix: corrige um bug
+docs: atualiza documentação
+style: mudanças de formatação (espaços, etc)
+refactor: refatora código sem mudar comportamento
+test: adiciona/atualiza testes
+chore: atualiza dependências ou versão
+						</pre
+						>
+						<p style="opacity: 0.7; font-size: 0.9rem">
+							<strong>Exemplo real:</strong> "feat: implementa
+							autenticação JWT" ✓
+						</p>
+					</div>
 
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>1️⃣ Passo 1: Ver o que mudou</h3>
+						<pre class="command">
+# Ver status dos arquivos (qual vai ser commitado)
+git status
+
+# Ver exatamente o que mudou em cada arquivo
+git diff
+						</pre
+						>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>2️⃣ Passo 2: Adicionar arquivos (staging)</h3>
+						<pre class="command">
+# Adicionar um arquivo específico
+git add nome-do-arquivo.js
+
+# Adicionar todos os arquivos modificados
+git add .
+
+# Adicionar de forma interativa (escolher quais linhas)
+git add -p
+						</pre
+						>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>3️⃣ Passo 3: Criar o commit</h3>
+						<pre class="command">
+# Commit com mensagem curta
+git commit -m "feat: adiciona validação de email"
+
+# Commit com mensagem detalhada (abre editor)
+git commit
+
+# Commit alterando a mensagem de um commit anterior (último)
+git commit --amend -m "nova mensagem"
+						</pre
+						>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>📊 Visualizar histórico de commits</h3>
+						<pre class="command">
+# Ver log simples
+git log --oneline
+
+# Ver log com gráfico das branches
+git log --oneline --graph --all
+
+# Ver commits de um autor específico
+git log --author="Paulo"
+						</pre
+						>
+					</div>
+
+					<div class="arrow">↺</div>
+
+					<div
+						style="
+							background: rgba(16, 185, 129, 0.3);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">✅ Boas Práticas</h3>
+						<ul style="line-height: 2; opacity: 0.9">
+							<li>
+								💡
+								<strong>Commits pequenos e focados:</strong> Um
+								commit = uma mudança bem definida
+							</li>
+							<li>
+								💡 <strong>Mensagens descritivas:</strong> "fix:
+								corrige bug de login" é melhor que "arruma
+								código"
+							</li>
+							<li>
+								💡
+								<strong>Commit frequentemente:</strong> Vários
+								commits pequenos > um commit gigante
+							</li>
+							<li>
+								💡
+								<strong>Sempre faça git status antes:</strong>
+								Não commita arquivos desnecessários
+							</li>
+							<li>
+								💡 <strong>Sincronize regularmente:</strong> git
+								push após cada commit ou final do dia
+							</li>
+							<li>
+								❌
+								<strong
+									>Nunca commita em main diretamente:</strong
+								>
+								Sempre use branches de suporte
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Seção Features -->
+				<section id="features" class="flowchart">
+					<div
+						class="step"
+						style="max-width: 800px; text-align: center"
+					>
+						<h3>🟢 Features - Desenvolvendo Funcionalidades</h3>
+						<p style="margin: 1rem 0; opacity: 0.9">
+							Uma feature é uma nova funcionalidade do seu projeto.
+							Ela nasce do <strong>develop</strong>, é desenvolvida isoladamente,
+							e volta para <strong>develop</strong> quando pronta.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>💡 O que é uma Feature?</h3>
+						<p style="line-height: 1.8; opacity: 0.9">
+							<strong>Isolamento:</strong> Cada feature fica em sua própria branch, sem afetar develop.<br />
+							<strong>Desenvolvimento independente:</strong> Múltiplos developers podem trabalhar em features diferentes simultaneamente.<br />
+							<strong>Facilita revisão:</strong> Quando pronta, a feature é revisada antes de fazer merge.<br />
+							<strong>Fácil de reverter:</strong> Se algo der errado, a feature inteira pode ser descartada sem afetar main ou develop.<br />
+							<strong>Padrão de nomenclatura:</strong> Use <code>feature/nome-descritivo</code>
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>📋 Exemplos de Nomes de Features</h3>
+						<pre class="command">
+feature/login                 ✓ Simples e claro
+feature/autenticacao-jwt      ✓ Descritivo
+feature/user-profile          ✓ Em inglês (padrão)
+feature/add-email-validation  ✓ Ação + contexto
+
+feature/bugfix                ❌ Vago
+feature/atualizações          ❌ Muito genérico
+feature/novo                  ❌ Não descreve nada
+						</pre>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>1️⃣ Passo 1: Criar a Feature</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Primeiro, sempre puxe as atualizações do develop e depois crie sua feature:
+						</p>
+						<pre class="command">
+# Ir para develop
+git checkout develop
+
+# Puxar as atualizações mais recentes
+git pull origin develop
+
+# Criar uma nova branch feature
+git checkout -b feature/seu-nome
+
+# Exemplo real:
+git checkout -b feature/login
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Dica:</strong> Quando você executa <code>git checkout -b</code>, o Git cria a branch baseada no commit atual (develop).
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>2️⃣ Passo 2: Desenvolver a Feature</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Agora você trabalha normalmente: edita arquivos, testa, commita:
+						</p>
+						<pre class="command">
+# Fazer mudanças nos arquivos...
+# (você edita o código normalmente)
+
+# Ver o status
+git status
+
+# Adicionar as mudanças
+git add .
+
+# Commitar com mensagem descritiva
+git commit -m "feat: adiciona tela de login"
+
+# Fazer mais mudanças...
+git add .
+git commit -m "feat: implementa validação de email"
+
+git add .
+git commit -m "feat: cria função de autenticação JWT"
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Dica:</strong> Múltiplos commits pequenos e focados são melhor que um commit gigante!
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>3️⃣ Passo 3: Publicar a Feature no Repositório Remoto</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Depois de alguns commits, publique sua feature para o repositório remoto:
+						</p>
+						<pre class="command">
+# Enviar a feature para o repositório remoto
+git push origin feature/login
+
+# Se for a primeira vez, Git pedirá para rastrear a branch remota
+# Você pode usar também:
+git push -u origin feature/login
+# (-u = --set-upstream, configura para rastrear automaticamente)
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Por que fazer push?</strong> Para backup, colaboração com o time, e evitar perder código.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>4️⃣ Passo 4: Sincronizar com Develop (Opcional)</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Se outras features foram mergeadas no develop enquanto você trabalhava, sincronize:
+						</p>
+						<pre class="command">
+# Trazer as atualizações do develop
+git fetch origin
+git pull origin develop
+
+# Se houver conflitos, resolva-os e depois:
+git add .
+git commit -m "chore: sincroniza com develop"
+git push origin feature/login
+						</pre>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>5️⃣ Passo 5: Finalizar a Feature</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Quando a feature está pronta, faça merge de volta ao develop:
+						</p>
+						<pre class="command">
+# Voltar para develop
+git checkout develop
+
+# Puxar as atualizações
+git pull origin develop
+
+# Fazer merge da feature
+git merge --no-ff feature/login
+
+# O --no-ff cria um commit de merge (recomendado no GitFlow)
+# Isso mantém o histórico limpo e rastreável
+
+# Publicar a merge
+git push origin develop
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>O que é --no-ff?</strong> Cria um commit de merge mesmo que o merge seja "fast-forward". Assim seu histórico fica organizado.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>6️⃣ Passo 6: Deletar a Feature (Limpeza)</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Após o merge, você pode deletar a branch da feature:
+						</p>
+						<pre class="command">
+# Deletar localmente
+git branch -d feature/login
+
+# Deletar no repositório remoto
+git push origin --delete feature/login
+
+# Ver branches restantes
+git branch -a
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Quando deletar?</strong> Após fazer merge com sucesso. Isso mantém o repositório limpo.
+						</p>
+					</div>
+
+					<div class="arrow">↺</div>
+
+					<div
+						style="
+							background: rgba(16, 185, 129, 0.3);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">✅ Ciclo Completo de uma Feature</h3>
+						<pre style="background: rgba(0, 0, 0, 0.1); padding: 1rem; border-radius: 4px; font-size: 0.9rem">
+1. git checkout develop && git pull origin develop
+2. git checkout -b feature/nome
+3. (Desenvolver, commitar, testar)
+4. git push origin feature/nome
+5. (Revisar, ajustar se necessário)
+6. git checkout develop && git pull origin develop
+7. git merge --no-ff feature/nome
+8. git push origin develop
+9. git branch -d feature/nome
+10. git push origin --delete feature/nome
+						</pre>
+					</div>
+
+					<div
+						style="
+							background: rgba(239, 68, 68, 0.3);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">⚠️ Armadilhas Comuns</h3>
+						<ul style="line-height: 2; opacity: 0.9">
+							<li>
+								❌ Esqueceu de fazer git pull antes de criar a feature
+								<br />
+								<span style="opacity: 0.7">→ Pode levar a conflitos desnecessários</span>
+							</li>
+							<li>
+								❌ Trabalhou direto no develop em vez de criar uma feature
+								<br />
+								<span style="opacity: 0.7">→ Viola o GitFlow! Sempre use features</span>
+							</li>
+							<li>
+								❌ Fez merge sem sincronizar com develop
+								<br />
+								<span style="opacity: 0.7">→ Pode ter conflitos. Sempre faça pull antes de merge</span>
+							</li>
+							<li>
+								❌ Deletou a feature sem fazer merge
+								<br />
+								<span style="opacity: 0.7">→ Seu trabalho pode ser perdido</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Seção Release -->
+				<section id="release" class="flowchart">
+					<div class="step">
+						<h3>Release Start</h3>
+						<code class="command"
+							>git checkout -b release/v1.0.0</code
+						>
+					</div>
+					<div class="arrow">↓</div>
+					<div class="step">
+						<h3>Release Finish</h3>
+						<code class="command"
+							>git checkout main<br />git merge --no-ff
+							release/v1.0.0<br />git tag v1.0.0</code
+						>
+					</div>
+				</section>
+
+				<!-- Seção Hotfix -->
+				<section id="hotfix" class="flowchart">
+					<div class="step">
+						<h3>Hotfix</h3>
+						<code class="command"
+							>git checkout main<br />git checkout -b
+							hotfix/v1.0.1<br />git checkout main && git merge
+							--no-ff hotfix/v1.0.1</code
+						>
+					</div>
+				</section>
+			</main>
+		</div>
+		<footer>
+			Repositório:
+			<a
+				href="https://github.com/pauloalmeidasilva/pureGitFlow"
+				target="_blank"
+				>Pure GitFlow</a
+			>
+			| Desenvolvedor:
+			<a href="https://github.com/pauloalmeidasilva" target="_blank"
+				>Paulo Ricardo</a
+			>
+		</footer>
+
+		<script src="assets/app.js"></script>
+	</body>
 </html>
