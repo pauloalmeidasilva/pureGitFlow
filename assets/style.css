@@ -115,6 +115,22 @@ main li {
     margin-bottom: 0.5rem;
 }
 
+.flow-image > img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    display: block;
+    margin: 0.5rem auto 0 auto;
+}
+
+.flow-image > span{
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-align: center;
+}
+
 .command {
     background: #000;
     padding: 1rem;
