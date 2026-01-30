@@ -963,31 +963,543 @@ git push origin --delete v1.0.0
 
 				<!-- Seção Release -->
 				<section id="release" class="flowchart">
-					<div class="step">
-						<h3>Release Start</h3>
-						<code class="command"
-							>git checkout -b release/v1.0.0</code
-						>
+					<div
+						class="step"
+						style="max-width: 800px; text-align: center"
+					>
+						<h3>🟠 Releases - Preparando para Produção</h3>
+						<p style="margin: 1rem 0; opacity: 0.9">
+							Uma release é o momento em que seu código do <strong>develop</strong> 
+							está pronto para ir para produção. Nessa fase você ajusta versões,
+							testa, corrige bugs menores e prepara o deploy.
+						</p>
 					</div>
+
 					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>O que é uma Release?</h3>
+						<p style="line-height: 1.8; opacity: 0.9">
+							<strong>Fase de Homologação:</strong> O código de develop é isolado em uma branch release para testes finais.<br />
+							<strong>Ajustes Finais:</strong> Corrigir bugs menores, atualizar versões e documentação sem adicionar novas features.<br />
+							<strong>Controle de Qualidade:</strong> Tudo é testado rigorosamente antes de chegar à produção.<br />
+							<strong>Sincronização:</strong> Após pronto, merge em main (com tag) e volta para develop para sincronizar.<br />
+							<strong>Padrão de nomenclatura:</strong> Use <code>release/vX.X.X</code> (semântico)
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>🎯 Quando Criar uma Release?</h3>
+						<p style="line-height: 1.8; opacity: 0.9">
+							<strong>Develop está estável:</strong> Todas as features planejadas estão prontas e testadas.<br />
+							<strong>Funcionalidades testadas:</strong> O código passou por testes de integração e funciona corretamente.<br />
+							<strong>Sem novas features planejadas:</strong> Nenhuma outra feature deve entrar até o próximo release.<br />
+							<strong>Tempo definido:</strong> Releases costumam seguir um calendário (semanal, bi-semanal, mensal).<br />
+							<strong>Acordo do time:</strong> O product owner e o tech lead concordam que é hora de lançar.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
 					<div class="step">
-						<h3>Release Finish</h3>
-						<code class="command"
-							>git checkout main<br />git merge --no-ff
-							release/v1.0.0<br />git tag v1.0.0</code
-						>
+						<h3>1️⃣ Passo 1: Preparar para Release</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Antes de criar a branch release, certifique-se que develop está pronto:
+						</p>
+						<pre class="command">
+# Ir para develop
+git checkout develop
+
+# Puxar as atualizações mais recentes
+git pull origin develop
+
+# Verificar que não há mudanças não commitadas
+git status
+
+# Revisar o histórico de commits (features que vão para release)
+git log --oneline -10
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Dica:</strong> Converse com o time! Certifique-se que ninguém está no meio de uma feature crítica.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>2️⃣ Passo 2: Criar a Release Branch</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Crie a branch release baseada no develop:
+						</p>
+						<pre class="command">
+# Criar a release branch
+git checkout -b release/v1.0.0
+
+# Exemplos reais:
+git checkout -b release/v2.1.0
+git checkout -b release/v1.5.3
+
+# Verificar que está na branch correta
+git branch
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Importante:</strong> A release é criada do develop neste momento. 
+							Nenhuma nova feature entra em develop até o merge dessa release!
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>3️⃣ Passo 3: Ajustes Finais na Release</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Nesta fase, você faz ajustes menores, sem adicionar novas funcionalidades:
+						</p>
+						<pre class="command">
+# Atualizar arquivo de versão (package.json, version.txt, etc)
+# Exemplo em package.json:
+# "version": "1.0.0"
+
+# Atualizar CHANGELOG.md com as mudanças
+# Adicionar notas de release
+
+# Commitar as mudanças
+git add .
+git commit -m "chore: atualiza versão para v1.0.0 e CHANGELOG"
+
+# Corrigir bugs MENORES encontrados em testes
+git add .
+git commit -m "fix: corrige bug de validação encontrado em testes"
+
+# Ver todos os commits da release
+git log develop..HEAD --oneline
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>⚠️ IMPORTANTE:</strong> NÃO adicione features! Apenas: versão, 
+							documentação e correções de bugs descobertos em testes.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>4️⃣ Passo 4: Testes Finais</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Antes de fazer merge, teste tudo bem:
+						</p>
+						<pre class="command">
+# Executar suite de testes
+
+# Se houver erros, corrija na release branch
+git add .
+git commit -m "fix: corrige erro encontrado em teste final"
+
+# Se tudo passou, você está pronto para fazer merge!
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Dica:</strong> Este é o último momento para encontrar e corrigir problemas antes da produção.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>5️⃣ Passo 5: Merge da Release em Main</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Agora leve a release para produção (main):
+						</p>
+						<pre class="command">
+# Ir para main
+git checkout main
+
+# Puxar atualizações (caso alguém tenha feito push)
+git pull origin main
+
+# Fazer merge da release
+git merge --no-ff release/v1.0.0 -m "Merge release v1.0.0 para produção"
+
+# Criar a tag na versão de produção
+git tag -a v1.0.0 -m "Release v1.0.0 - Versão estável em produção"
+
+# Publicar main e a tag
+git push origin main
+git push origin v1.0.0
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>--no-ff mantém o histórico limpo</strong> mostrando explicitamente quando uma release foi feita.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>6️⃣ Passo 6: Sincronizar com Develop</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Leve as mudanças da release de volta para develop:
+						</p>
+						<pre class="command">
+# Ir para develop
+git checkout develop
+
+# Puxar atualizações
+git pull origin develop
+
+# Fazer merge da release
+git merge --no-ff release/v1.0.0 -m "Merge release v1.0.0 de volta para develop"
+
+# Publicar
+git push origin develop
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Por que fazer merge de volta?</strong> Para sincronizar qualquer correção 
+							feita na release (versão, bugfixes) com develop.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>7️⃣ Passo 7: Deletar a Release (Limpeza)</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							A release branch pode ser deletada após merge:
+						</p>
+						<pre class="command">
+# Deletar localmente
+git branch -d release/v1.0.0
+
+# Deletar no repositório remoto
+git push origin --delete release/v1.0.0
+
+# Ver branches restantes
+git branch -a
+
+# Pronto! A release foi concluída!
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Quando deletar?</strong> Após garantir que os merges em main e develop foram bem-sucedidos.
+						</p>
+					</div>
+
+					<div class="arrow">↺</div>
+
+					<div
+						style="
+							background: rgba(16, 185, 129, 0.3);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">✅ Ciclo Completo de uma Release</h3>
+						<pre style="background: rgba(0, 0, 0, 0.1); padding: 1rem; border-radius: 4px; font-size: 0.9rem">
+1. git checkout develop && git pull origin develop
+2. git checkout -b release/v1.0.0
+3. (Ajustar versão, CHANGELOG, corrigir bugs menores)
+4. git add . && git commit -m "chore: v1.0.0 release prep"
+5. (Testar! npm test, npm run build, etc)
+6. git checkout main && git pull origin main
+7. git merge --no-ff release/v1.0.0
+8. git tag -a v1.0.0 -m "Release v1.0.0"
+9. git push origin main && git push origin v1.0.0
+10. git checkout develop && git pull origin develop
+11. git merge --no-ff release/v1.0.0
+12. git push origin develop
+13. git branch -d release/v1.0.0 && git push origin --delete release/v1.0.0
+14. Deploy para produção (npm run deploy ou CI/CD)
+						</pre>
+					</div>
+
+					<div
+						style="
+							background: rgba(16, 185, 129, 0.2);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">💡 Boas Práticas</h3>
+						<ul style="line-height: 2; opacity: 0.9">
+							<li>
+								✅ <strong>Sempre use versionamento semântico:</strong> v1.0.0, v2.1.3, etc
+							</li>
+							<li>
+								✅ <strong>Mantenha um CHANGELOG:</strong> Documente o que mudou em cada versão
+							</li>
+							<li>
+								✅ <strong>Testar bem:</strong> A release branch é seu último checkpoint antes de produção
+							</li>
+							<li>
+								✅ <strong>Sincronizar com develop:</strong> Nunca esqueça de fazer merge de volta
+							</li>
+							<li>
+								✅ <strong>Criar tags:</strong> Toda release precisa de uma tag correspondente
+							</li>
+							<li>
+								✅ <strong>Comunicar o time:</strong> Avise quando uma release é criada e quando é lançada
+							</li>
+							<li>
+								✅ <strong>Deploy automático:</strong> Configure CI/CD para fazer deploy quando a tag é criada
+							</li>
+						</ul>
+					</div>
+
+					<div
+						style="
+							background: rgba(239, 68, 68, 0.3);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">⚠️ Armadilhas Comuns</h3>
+						<ul style="line-height: 2; opacity: 0.9">
+							<li>
+								❌ Adicionar features na release branch
+								<br />
+								<span style="opacity: 0.7">→ Release é só para ajustes! Features vão em develop</span>
+							</li>
+							<li>
+								❌ Esquecer de sincronizar com develop
+								<br />
+								<span style="opacity: 0.7">→ Bugfixes e versão ficarão fora de develop</span>
+							</li>
+							<li>
+								❌ Não testar antes do merge em main
+								<br />
+								<span style="opacity: 0.7">→ Bugs irão para produção! Sempre teste!</span>
+							</li>
+							<li>
+								❌ Não criar a tag
+								<br />
+								<span style="opacity: 0.7">→ Impossível rastrear qual código está em produção</span>
+							</li>
+							<li>
+								❌ Fazer merge em develop ANTES de main
+								<br />
+								<span style="opacity: 0.7">→ Sempre: main primeiro, depois develop!</span>
+							</li>
+							<li>
+								❌ Continuar commitando em develop durante a release
+								<br />
+								<span style="opacity: 0.7">→ Isso causará conflitos. Comunique ao time!</span>
+							</li>
+						</ul>
+					</div>
+
+					<div
+						style="
+							background: rgba(59, 130, 246, 0.3);
+							padding: 1.5rem;
+							border-radius: 8px;
+							margin: 2rem 0;
+						"
+					>
+						<h3 style="margin-bottom: 1rem">📝 Exemplo Real de Release</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">Seu app está pronto! v1.2.0 com 5 features novas:</p>
+						<pre style="background: rgba(0, 0, 0, 0.1); padding: 1rem; border-radius: 4px; font-size: 0.9rem">
+# Preparação
+$ git checkout develop && git pull origin develop
+$ git checkout -b release/v1.2.0
+
+# Ajustes
+$ vim package.json  # 1.1.0 → 1.2.0
+$ vim CHANGELOG.md  # Adiciona notas da v1.2.0
+$ git add . && git commit -m "chore: v1.2.0 release prep"
+
+# Realize testes automatizados e manuais
+# Tudo passou! ✅
+
+# Main
+$ git checkout main && git pull origin main
+$ git merge --no-ff release/v1.2.0
+$ git tag -a v1.2.0 -m "Release v1.2.0"
+$ git push origin main && git push origin v1.2.0
+
+# Sincronizar develop
+$ git checkout develop && git pull origin develop
+$ git merge --no-ff release/v1.2.0
+$ git push origin develop
+
+# Limpeza
+$ git branch -d release/v1.2.0
+$ git push origin --delete release/v1.2.0
+
+# Faça o Deploy
+# Sucesso! 🚀 v1.2.0 em produção!
+						</pre>
 					</div>
 				</section>
 
 				<!-- Seção Hotfix -->
 				<section id="hotfix" class="flowchart">
+					<div class="step" style="max-width: 800px; text-align: center">
+						<h3>🔴 Hotfix - Correção Crítica em Produção</h3>
+						<p style="margin: 1rem 0; opacity: 0.9">
+							Hotfix é uma correção urgente aplicada diretamente a <strong>main</strong> quando algo crítico quebra em produção. Deve ser rápida, segura e bem documentada.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>Quando criar um Hotfix?</h3>
+						<p style="line-height: 1.8; opacity: 0.9">
+							<strong>Bug crítico em produção:</strong> erro que impacta usuários, segurança ou dados.<br />
+							<strong>Disponibilidade:</strong> Problema que impede o uso do serviço.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
 					<div class="step">
-						<h3>Hotfix</h3>
-						<code class="command"
-							>git checkout main<br />git checkout -b
-							hotfix/v1.0.1<br />git checkout main && git merge
-							--no-ff hotfix/v1.0.1</code
-						>
+						<h3>1️⃣ Passo 1: Criar branch de Hotfix</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">Crie a branch com base no <code>main</code>:</p>
+						<pre class="command">
+# Ir para main
+git checkout main
+
+# Puxar a versão atual da produção
+git pull origin main
+
+# Criar a branch hotfix
+git checkout -b hotfix/v1.0.1
+
+# (Opcional) rodar testes rápidos/localmente antes de editar
+</pre>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>2️⃣ Passo 2: Corrigir e testar</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">Faça a correção mínima necessária, rode testes e mantenha commits pequenos:</p>
+						<pre class="command">
+# Fazer a correção
+# Editar arquivos, testar localmente
+
+git add .
+git commit -m "fix(hotfix): corrige bug crítico de produção"
+
+# Rodar testes automatizados (se disponível)
+</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Dica:</strong> Prefira commits pequenos e mensagens claras para facilitar auditoria.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>3️⃣ Passo 3: Merge do Hotfix em Main</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">Depois de validado, faça merge em <code>main</code> e crie tag se for uma correção de versão:</p>
+						<pre class="command">
+# Ir para main
+git checkout main
+
+# Puxar atualizações
+git pull origin main
+
+# Fazer merge do hotfix
+git merge --no-ff hotfix/v1.0.1 -m "Merge hotfix v1.0.1: corrige bug crítico"
+
+# Criar tag anotada (recomendado)
+git tag -a v1.0.1 -m "Hotfix v1.0.1 - Correção crítica"
+
+# Publicar main e a tag
+git push origin main
+git push origin v1.0.1
+</pre>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>4️⃣ Passo 4: Sincronizar com Develop</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">Traga a correção para <code>develop</code> para manter o histórico sincronizado:</p>
+						<pre class="command">
+# Ir para develop
+git checkout develop
+
+# Puxar atualizações
+git pull origin develop
+
+# Merge do hotfix
+git merge --no-ff hotfix/v1.0.1 -m "Merge hotfix v1.0.1 para develop"
+
+# Publicar
+git push origin develop
+</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Por que?</strong> Para garantir que qualquer correção feita em produção não seja perdida nas próximas releases.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>5️⃣ Passo 5: Deletar branch de Hotfix</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">Remova a branch local e remota após confirmar merges:</p>
+						<pre class="command">
+# Deletar localmente
+git branch -d hotfix/v1.0.1
+
+# Deletar no remoto
+git push origin --delete hotfix/v1.0.1
+</pre>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>💡 Boas Práticas para Hotfix</h3>
+						<ul style="line-height: 1.8; opacity: 0.9">
+							<li>✅ <strong>Rápido e mínimo:</strong> só o necessário para corrigir o problema.</li>
+							<li>✅ <strong>Mensagens claras:</strong> inclua referência ao problema/issue.</li>
+							<li>✅ <strong>Testes mínimos:</strong> rodar smoke tests e validar logs antes do merge.</li>
+							<li>✅ <strong>Comunicação:</strong> informe o time e registre o que foi feito no CHANGELOG ou issue.</li>
+						</ul>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="background: rgba(239, 68, 68, 0.3); padding: 1rem; border-radius: 8px; margin: 2rem 0;">
+						<h3 style="margin-bottom: 1rem">⚠️ Armadilhas Comuns</h3>
+						<ul style="line-height: 1.8; opacity: 0.9">
+							<li>❌ <strong>Fazer grandes mudanças:</strong> hotfix não é lugar para refactors ou novas features.</li>
+							<li>❌ <strong>Não testar:</strong> lançar sem validação pode agravar o problema.</li>
+							<li>❌ <strong>Esquecer de sincronizar com develop:</strong> a correção pode sumir em releases futuras.</li>
+						</ul>
+					</div>
+
+					<div class="step" style="background: rgba(59, 130, 246, 0.3); padding: 1rem; border-radius: 8px; margin: 2rem 0;">
+						<h3 style="margin-bottom: 1rem">📝 Exemplo Prático de Hotfix</h3>
+						<pre style="background: rgba(0,0,0,0.06); padding: 1rem; border-radius: 4px; font-size: 0.9rem">
+# Início
+git checkout main && git pull origin main
+git checkout -b hotfix/v1.0.1
+
+# Corrigir, testar e commitar
+git add .
+git commit -m "fix(hotfix): corrige null pointer na rota /api"
+
+# Merge em main e tag
+git checkout main
+git merge --no-ff hotfix/v1.0.1 -m "Merge hotfix v1.0.1"
+git tag -a v1.0.1 -m "Hotfix v1.0.1 - corrige NPE /api"
+git push origin main && git push origin v1.0.1
+
+# Sincronizar develop
+git checkout develop
+git pull origin develop
+git merge --no-ff hotfix/v1.0.1 -m "Merge hotfix v1.0.1 para develop"
+git push origin develop
+
+# Limpeza
+git branch -d hotfix/v1.0.1
+git push origin --delete hotfix/v1.0.1
+</pre>
 					</div>
 				</section>
 			</main>
