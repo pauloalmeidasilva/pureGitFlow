@@ -49,3 +49,35 @@ document.querySelectorAll('.command').forEach(cmd => {
         });
     });
 });
+
+// Abrir imagem em tamanho maior ao clicar
+document.querySelectorAll('img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', function() {
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '1000';
+        overlay.style.cursor = 'pointer';
+
+        const largeImg = document.createElement('img');
+        largeImg.src = img.src;
+        largeImg.style.maxWidth = '90%';
+        largeImg.style.maxHeight = '90%';
+        largeImg.style.objectFit = 'contain';
+
+        overlay.appendChild(largeImg);
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', function() {
+            document.body.removeChild(overlay);
+        });
+    });
+});

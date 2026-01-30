@@ -22,28 +22,13 @@
 			<nav>
 				<ul>
 					<li><a class="menu-item" href="#home">Apresentação</a></li>
-					<li>
-						<a class="menu-item" href="#fluxo">Fluxo Completo</a>
-					</li>
-					<li>
-						<a class="menu-item" href="#instalation"
-							>Instalando o Git</a
-						>
-					</li>
-					<li>
-						<a class="menu-item" href="#init"
-							>Iniciando Repositório</a
-						>
-					</li>
-					<li>
-						<a class="menu-item" href="#configure"
-							>Configurando .gitignore</a
-						>
-					</li>
-					<li>
-						<a class="menu-item" href="#commit">Commit Básico</a>
-					</li>
+					<li><a class="menu-item" href="#fluxo">Fluxo Completo</a></li>
+					<li><a class="menu-item" href="#instalation">Instalando o Git</a></li>
+					<li><a class="menu-item" href="#init">Iniciando Repositório</a></li>
+					<li><a class="menu-item" href="#configure">Configurando .gitignore</a></li>
+					<li><a class="menu-item" href="#commit">Commit Básico</a></li>
 					<li><a class="menu-item" href="#features">Features</a></li>
+					<li><a class="menu-item" href="#tags">Tags de Versionamento</a></li>
 					<li><a class="menu-item" href="#release">Releases</a></li>
 					<li><a class="menu-item" href="#hotfix">Hotfix</a></li>
 				</ul>
@@ -118,29 +103,28 @@
 					</div>
 
 					<div class="step">
-						<h3>1. BRANCH PRINCIPAL (main) → develop</h3>
+						<h3>1. BRANCHES PRINCIPAIS (main e Develop)</h3>
 						<p style="opacity: 0.9; line-height: 1.8">
 							<strong>Main:</strong> Produção estável. Recebe
-							apenas merges de <strong>release</strong> e
+							apenas merges vindos de <strong>release</strong> e
 							<strong>hotfix</strong>.<br />
 							<strong>Develop:</strong> Branch de integração
 							contínua. Base para todas as features e próximo
 							release.<br />
-							<em style="opacity: 0.7"
-								>→ Vá para a seção "Iniciando Repositório" para
-								criar estas branches</em
-							>
+							<em style="opacity: 0.7">
+								→ Na seção "Iniciando Repositório" contém os comandos para criação destas branches
+							</em>
 						</p>
 					</div>
 
 					<div class="arrow">↓</div>
 
 					<div class="step">
-						<h3>2. FEATURES (verde) 🟢</h3>
+						<h3>2. BRANCHES DE CRIAÇÃO (features)</h3>
 						<p style="opacity: 0.9; line-height: 1.8">
 							Novas funcionalidades nascem do
 							<strong>develop</strong> e são isoladas em branches
-							<code>feature/nome</code>.<br />
+							<strong>feature/nome</strong>.<br />
 							Cada developer trabalha em sua feature sem afetar
 							outras. Após pronta, faz merge de volta ao
 							develop.<br />
@@ -154,18 +138,18 @@
 					<div class="arrow">↓</div>
 
 					<div class="step">
-						<h3>3. RELEASE (laranja) 🟠</h3>
+						<h3>3. BRANCHES DE HOMOLOGAÇÃO (release)</h3>
 						<p style="opacity: 0.9; line-height: 1.8">
 							Quando develop está pronto para produção, cria-se
-							uma branch <code>release/vX.X.X</code>.<br />
+							uma branch <strong>release/vX.X.X</strong>.<br />
 							Nesta fase: ajusta versão, documentação, e corrige
 							bugs menores. Depois faz merge em
 							<strong>main</strong> (com tag) e volta para
 							develop.<br />
-							<em style="opacity: 0.7"
-								>→ Vá para a seção "Releases" para ver os
-								comandos</em
-							>
+							<em style="opacity: 0.7">
+								→ Vá para a seção "Releases" para ver os
+								comandos
+							</em>
 						</p>
 					</div>
 
@@ -175,17 +159,17 @@
 						class="step"
 						style="background: rgba(239, 68, 68, 0.3)"
 					>
-						<h3>4. HOTFIX (vermelho) 🔴 - EMERGÊNCIA</h3>
+						<h3>4. BRANCHES DE CORREÇÃO (hotfix) - EMERGÊNCIA</h3>
 						<p style="opacity: 0.9; line-height: 1.8">
 							Bug crítico em produção? Cria branch
-							<code>hotfix/vX.X.X</code>
-							<strong>direto do main</strong>.<br />
+							<strong>hotfix/vX.X.X</strong>
+							direto do main.<br />
 							Corrige o problema com urgência, faz merge em main
 							(com tag) E de volta em develop para sincronizar.<br />
-							<em style="opacity: 0.7"
-								>→ Vá para a seção "Hotfix" para ver os
-								comandos</em
-							>
+							<em style="opacity: 0.7">
+								→ Vá para a seção "Hotfix" para ver os
+								comandos
+							</em>
 						</p>
 					</div>
 
@@ -778,6 +762,200 @@ git branch -a
 								❌ Deletou a feature sem fazer merge
 								<br />
 								<span style="opacity: 0.7">→ Seu trabalho pode ser perdido</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Seção Tags de Versionamento -->
+				<section id="tags" class="flowchart">
+					<div
+						class="step"
+						style="max-width: 800px; text-align: center"
+					>
+						<h3>🏷️ Tags de Versionamento</h3>
+						<p style="margin: 1rem 0; opacity: 0.9">
+							Tags são marcadores de commit que identificam pontos importantes
+							no histórico. São essenciais para marcar versões de release!
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>O que é uma Tag?</h3>
+						<p style="line-height: 1.8; opacity: 0.9">
+							<strong>Marcador de Versão:</strong> Uma tag é um rótulo que aponta
+							para um commit específico, como "v1.0.0" ou "v2.3.5".<br />
+							<strong>Histórico Rastreável:</strong> Facilita encontrar exatamente
+							qual código foi usado em uma versão específica.<br />
+							<strong>Releases e Deployments:</strong> Tags marcam quando uma
+							versão foi lançada em produção.<br />
+							<strong>Backup Seguro:</strong> Se algo der errado, você pode voltar
+							para qualquer tag anterior.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step" style="max-width: 700px">
+						<h3>Versionamento Semântico (Semantic Versioning)</h3>
+						<p style="line-height: 1.8; margin-bottom: 1rem; opacity: 0.9">
+							O padrão internacional para tags é
+							<strong>MAJOR.MINOR.PATCH</strong>:
+						</p>
+						<pre class="command">
+v1.2.3
+│ │ │
+│ │ └─ PATCH: Correção de bugs (compatível com versão anterior)
+│ └─── MINOR: Nova funcionalidade (compatível com versão anterior)
+└───── MAJOR: Mudança incompatível (quebra compatibilidade)
+
+Exemplos:
+v0.0.1  → Primeira versão experimental
+v1.0.0  → Primeira versão estável
+v1.1.0  → Adicionou nova feature
+v1.1.1  → Corrigiu um bug
+v2.0.0  → Nova versão com mudanças grandes
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Por que usar?</strong> Desenvolvedores sabem rapidinho se
+							uma atualização é segura ou pode quebrar algo.
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>1️⃣ Criar uma Tag Local</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Marque um commit específico com uma versão:
+						</p>
+						<pre class="command">
+# Tag leve (simples)
+git tag v1.0.0
+
+# Tag anotada (com mensagem e autor - recomendado)
+git tag -a v1.0.0 -m "Versão 1.0.0 - Primeira release"
+
+# Tag em um commit anterior
+git tag v1.0.0 abc1234
+
+# Ver todas as tags
+git tag
+
+# Ver detalhes de uma tag
+git show v1.0.0
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Tag Leve vs Anotada:</strong> Use
+							<code>-a -m</code> para releases oficiais (mais informações).
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>2️⃣ Publicar a Tag no Repositório Remoto</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Publique a tag para que todo o time veja:
+						</p>
+						<pre class="command">
+# Enviar uma tag específica
+git push origin v1.0.0
+
+# Enviar todas as tags
+git push origin --tags
+
+# Enviar tags e também o código
+git push origin main --tags
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							Agora a tag aparece no GitHub, GitLab, etc. e é visível para
+							todos!
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div class="step">
+						<h3>3️⃣ Trabalhar com Tags Existentes</h3>
+						<p style="opacity: 0.9; margin-bottom: 1rem">
+							Recuperar código de uma versão anterior:
+						</p>
+						<pre class="command">
+# Baixar tags do repositório remoto
+git fetch origin --tags
+
+# Voltar para um ponto no tempo
+git checkout v1.0.0
+
+# Criar uma nova branch baseada em uma tag
+git checkout -b hotfix-v1 v1.0.0
+
+# Deletar uma tag local
+git tag -d v1.0.0
+
+# Deletar uma tag remota
+git push origin --delete v1.0.0
+						</pre>
+						<p style="opacity: 0.7; font-size: 0.9rem; margin-top: 1rem">
+							<strong>Use case comum:</strong> Bug crítico em v1.0.0? Faça checkout
+							da tag e crie um hotfix branch!
+						</p>
+					</div>
+
+					<div class="arrow">↓</div>
+
+					<div
+						style="
+						background: rgba(16, 185, 129, 0.3);
+						padding: 1.5rem;
+						border-radius: 8px;
+						margin: 2rem 0;
+					"
+					>
+						<h3 style="margin-bottom: 1rem">✅ Ciclo Completo com Tags</h3>
+						<pre style="background: rgba(0, 0, 0, 0.1); padding: 1rem; border-radius: 4px; font-size: 0.9rem">
+1. Desenvolver features e commitar
+2. Criar release branch: git checkout -b release/v1.0.0
+3. Fazer merge em main: git checkout main && git merge release/v1.0.0
+4. Criar tag: git tag -a v1.0.0 -m "Release v1.0.0"
+5. Publicar: git push origin main && git push origin v1.0.0
+6. Voltar para develop e continuar desenvolvimento
+						</pre>
+					</div>
+
+					<div
+						style="
+						background: rgba(239, 68, 68, 0.3);
+						padding: 1.5rem;
+						border-radius: 8px;
+						margin: 2rem 0;
+					"
+					>
+						<h3 style="margin-bottom: 1rem">⚠️ Erros Comuns</h3>
+						<ul style="line-height: 2; opacity: 0.9">
+							<li>
+								❌ Criar tag no branch errado
+								<br />
+								<span style="opacity: 0.7">→ Sempre faça tag no main/master após release</span>
+							</li>
+							<li>
+								❌ Esquecer de fazer push da tag
+								<br />
+								<span style="opacity: 0.7">→ Tag local não é vista por ninguém. Sempre git push
+									origin --tags</span>
+							</li>
+							<li>
+								❌ Versões aleatórias (v1.5, v2, vfinal)
+								<br />
+								<span style="opacity: 0.7">→ Use semantic versioning: vMAJOR.MINOR.PATCH</span>
+							</li>
+							<li>
+								❌ Reutilizar tags antigas
+								<br />
+								<span style="opacity: 0.7">→ Tags são imutáveis. Sempre use nova versão</span>
 							</li>
 						</ul>
 					</div>
