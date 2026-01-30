@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Disallow: /node_modules/
+Disallow: *.log
+
+Sitemap: https://pauloalmeidasilva.github.io/pureGitFlow/sitemap.xml
+
+Crawl-delay: 1
